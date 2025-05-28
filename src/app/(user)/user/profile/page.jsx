@@ -13,7 +13,6 @@ export default function ProfileUser() {
 
     useEffect(() => {
       if (!loading && !user) {
-        // Redirect only after check
         router.push("/login");
       }
     }, [user, loading, router]);

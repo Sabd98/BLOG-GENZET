@@ -52,7 +52,6 @@ export default function CategoryManagement() {
     },
   });
 
-  // Fetch categories
   useEffect(() => {
     const fetchCategories = async () => {
       try {

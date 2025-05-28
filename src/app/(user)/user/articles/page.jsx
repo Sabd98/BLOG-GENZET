@@ -92,7 +92,7 @@ export default function ArticleList() {
                   } else {
                     const id = String(item.id || "").trim();
                     const name = String(item.name || "Unnamed Category").trim();
-                    return id ? { id, name } : null; // Exclude entries with empty IDs
+                    return id ? { id, name } : null; 
                   }
                 })
                 .filter(Boolean)
@@ -109,7 +109,6 @@ export default function ArticleList() {
           categoriesData = dummyCategories;
         }
 
-        // 3. Update State
         setArticles(articlesData);
         setCategories(categoriesData);
       } catch (globalError) {

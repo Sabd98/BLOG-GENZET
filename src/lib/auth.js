@@ -61,7 +61,6 @@ export const setServerAuthCookies = async (tokens) => {
 }
 
 export const setClientAuthCookies = async (tokens) => {
-  // Client-side cookie storage
   if (typeof window === 'undefined') return
   
   localStorage.setItem('token', tokens.token);

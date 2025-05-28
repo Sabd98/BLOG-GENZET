@@ -28,7 +28,6 @@ import { useParams } from "next/navigation";
 import { dummyArticles, dummyCategories } from "@/lib/dummyData";
 import { toast } from "sonner";
 
-// Article Schema Validation
 const articleFormSchema = z.object({
   title: z.string().min(1, "Title is required"),
   content: z.string().min(1, "Content is required"),
@@ -88,7 +87,6 @@ export default function ArticleForm() {
 
         } catch (error) {
           toast.error("Article Update Failed");
-          // Fallback to dummy data
           const dummyArticle = dummyArticles.find((a) => a.id === id);
           if (dummyArticle) {
             setArticle(dummyArticle);
@@ -117,7 +115,6 @@ export default function ArticleForm() {
         setCategories(validCategories);
       } catch (error) {
         console.error("Error fetching categories:", error);
-        // Fallback to dummy categories
         setCategories(dummyCategories);
         setUseDummyData(true);
       }
@@ -132,7 +129,6 @@ export default function ArticleForm() {
 
     try {
       if (useDummyData) {
-        // Handle dummy data creation/update
         const articleData = {
           id: isEditMode ? id : `dummy-${Date.now()}`,
           title: values.title,
@@ -156,7 +152,6 @@ export default function ArticleForm() {
           } locally:\n${JSON.stringify(articleData, null, 2)}`
         );
       } else {
-        // Real API call
         const formData = new FormData();
         formData.append("title", String(values.title));
         formData.append("content", String(values.content));
@@ -218,7 +213,6 @@ export default function ArticleForm() {
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          {/* Display backend errors at the top */}
           {formErrors.general && (
             <div className="text-red-500 p-3 bg-red-50 rounded-md">
               {formErrors.general}
@@ -239,18 +233,15 @@ export default function ArticleForm() {
                       onChange={(e) => {
                         const file = e.target.files?.[0];
                         if (file) {
-                          // Create a preview URL for UI
                           const previewURL = URL.createObjectURL(file);
                           field.onChange(file);
                         } else {
-                          // If no file selected, revert to initial image (if in edit mode)
                           field.onChange(initialImageUrl);
                         }
                       }}
                     />
                   </FormControl>
 
-                  {/* Show image preview */}
                   {(field.value || initialImageUrl) && (
                     <div className="mt-2">
                       <img

@@ -62,7 +62,6 @@ export default function AdminArticleList() {
     setCurrentPage(1);
   };
 
-  // Fixed category rendering
   const getCategoryValue = (category) => {
     return typeof category === "string" ? category : category.id;
   };
@@ -104,7 +103,7 @@ export default function AdminArticleList() {
           }
         } catch (error) {
           console.error("Articles fetch failed:", error);
-          articlesData = dummyArticles; // Fallback to dummy data
+          articlesData = dummyArticles; 
         }
 
         let categoriesData = [];

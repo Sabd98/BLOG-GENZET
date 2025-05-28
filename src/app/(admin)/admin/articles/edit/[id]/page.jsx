@@ -84,7 +84,6 @@ export default function ArticleForm() {
           setInitialImageUrl(response.data.imageUrl);
         } catch (error) {
           console.error("Error fetching article:", error);
-          // Fallback to dummy data
           const dummyArticle = dummyArticles.find((a) => a.id === id);
           if (dummyArticle) {
             setArticle(dummyArticle);
@@ -113,7 +112,6 @@ export default function ArticleForm() {
         setCategories(validCategories);
       } catch (error) {
         console.error("Error fetching categories:", error);
-        // Fallback to dummy categories
         setCategories(dummyCategories);
         setUseDummyData(true);
       }
@@ -128,7 +126,6 @@ export default function ArticleForm() {
 
     try {
       if (useDummyData) {
-        // Handle dummy data creation/update
         const articleData = {
           id: isEditMode ? id : `dummy-${Date.now()}`,
           title: values.title,
@@ -146,14 +143,12 @@ export default function ArticleForm() {
           ],
         };
 
-        // In a real app, you'd update your global state or context here
         alert(
           `Article ${
             isEditMode ? "updated" : "created"
           } locally:\n${JSON.stringify(articleData, null, 2)}`
         );
       } else {
-        // Real API call
         const formData = new FormData();
         formData.append("title", String(values.title));
         formData.append("content", String(values.content));
@@ -236,11 +231,9 @@ export default function ArticleForm() {
                       onChange={(e) => {
                         const file = e.target.files?.[0];
                         if (file) {
-                          // Create a preview URL for UI
                           const previewURL = URL.createObjectURL(file);
                           field.onChange(file);
                         } else {
-                          // If no file selected, revert to initial image (if in edit mode)
                           field.onChange(initialImageUrl);
                         }
                       }}

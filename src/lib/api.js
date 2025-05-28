@@ -7,9 +7,7 @@ export const api = axios.create({
   },
 });
 
-// Modified request interceptor
 api.interceptors.request.use((config) => {
-  // Only run on client-side
   if (typeof window !== "undefined") {
     const token = localStorage.getItem("token");
     if (token) {
@@ -19,11 +17,9 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Response interceptor
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    // Handle errors
     return Promise.reject(error);
   }
 );

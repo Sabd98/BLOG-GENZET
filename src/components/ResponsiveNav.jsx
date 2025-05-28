@@ -44,7 +44,6 @@ export function ResponsiveNav() {
       localStorage.removeItem("token");
       localStorage.removeItem("role");
       localStorage.removeItem("refreshToken");
-      // Clear cookies
       document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
       document.cookie = "role=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
     }
@@ -52,39 +51,7 @@ export function ResponsiveNav() {
   };
   if (!isMounted) return null;
 
-  // const profileComponent = isOpen && (
-  //   <div className="absolute right-0 mt-2 w-48 z-50 bg-white rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5">
-  //     {role === "Admin" ? (
-  //       <Link
-  //         href="/admin/profile"
-  //         className="flex items-center px-4 py-2 text-sm hover:bg-gray-100"
-  //         onClick={() => setIsOpen(false)}
-  //       >
-  //         <User className="h-4 w-4 mr-2" />
-  //         Profile
-  //       </Link>
-  //     ) : (
-  //       <Link
-  //         href="/user/profile"
-  //         className="flex items-center px-4 py-2 text-sm hover:bg-gray-100"
-  //         onClick={() => setIsOpen(false)}
-  //       >
-  //         <User className="h-4 w-4 mr-2" />
-  //         Profile
-  //       </Link>
-  //     )}
-  //     <button
-  //       onClick={() => {
-  //         handleLogout();
-  //         setIsOpen(false);
-  //       }}
-  //       className="w-full flex cursor-pointer items-center px-4 py-2 text-sm hover:bg-gray-100 text-red-600"
-  //     >
-  //       <LogOut className="h-4 w-4 mr-2" />
-  //       Logout
-  //     </button>
-  //   </div>
-  // );
+
   return (
     <nav className="border-b">
       <div className="flex items-center justify-between h-16 px-4">
