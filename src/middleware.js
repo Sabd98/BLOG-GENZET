@@ -45,12 +45,10 @@ export async function middleware(request) {
     return response;
   }
 }
-
 export const config = {
   matcher: [
-    "/admin/:path*",
-    "/user/:path*",
-    "/articles/:path*",
-    "/profile/:path*"
+ 
+    '/((?!api|_next/static|_next/image|favicon.ico).*)'
   ],
-};
+  runtime: 'experimental-edge' 
+}

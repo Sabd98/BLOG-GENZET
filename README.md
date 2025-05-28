@@ -13,6 +13,7 @@ c. Article Detail Page dengan Fitur Fetch Related Article
 d. Article Filter Berdasarkan Category
 e. Pencarian Artikel Berdasarkan Judul. Deskripsi. Kategori.
 f. Logout
+
 3. Admin Role.
 a. Article Table Page (CRUD). Bisa Filter dan Cari
 b. Category Table Page (CRUD), Lebih simple karena hanya mengandalkan modal. Ada fitur Cari Kategori.
@@ -27,7 +28,17 @@ d. Icon: Lucide-react
 e. Form validation: Zod + React Hook Form
 f. Version Control: Gunakan Git dan GitHub (implementasi Git flow).
 g. UI Responsive
+
 5. Tambahan
 a. Fitur Loading beberapa elemen
 b. Data Dummy Cadangan
 c. Toast succes and error message
+
+6. Jika Butuh Akun, Bisa Coba Akun Buatan Saya Dibawah Ini:
+a. Admin
+Username Mulyunu5521
+Pw Kekuatan2244
+b. User 
+
+Stecu2211
+Cueklu2411
