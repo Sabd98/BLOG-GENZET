@@ -25,7 +25,7 @@ export default function AdminArticleList() {
   const [articles, setArticles] = useState([])
   const [search, setSearch] = useState('')
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false)
-  const [selectedArticle, setSelectedArticle] = useState<string | null>(null)
+  const [selectedArticle, setSelectedArticle] = useState(null)
   const debouncedSearch = useDebounce(search, 400)
 
   // Fetch articles from API
