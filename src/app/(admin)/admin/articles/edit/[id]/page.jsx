@@ -26,9 +26,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import { useParams } from "next/navigation";
 import { dummyArticles, dummyCategories } from "@/lib/dummyData";
-import { toast } from "sonner";
 
-// Article Schema Validation
 const articleFormSchema = z.object({
   title: z.string().min(1, "Title is required"),
   content: z.string().min(1, "Content is required"),
@@ -84,10 +82,8 @@ export default function ArticleForm() {
           const response = await api.get(`/articles/${id}`);
           setArticle(response.data);
           setInitialImageUrl(response.data.imageUrl);
-          toast.success("Articles Updated");
-
         } catch (error) {
-          toast.error("Article Update Failed");
+          console.error("Error fetching article:", error);
           // Fallback to dummy data
           const dummyArticle = dummyArticles.find((a) => a.id === id);
           if (dummyArticle) {
@@ -150,6 +146,7 @@ export default function ArticleForm() {
           ],
         };
 
+        // In a real app, you'd update your global state or context here
         alert(
           `Article ${
             isEditMode ? "updated" : "created"
@@ -184,10 +181,10 @@ export default function ArticleForm() {
           });
         }
       }
-      toast.success("Article Submitted");
+
       router.push("/admin/articles");
     } catch (error) {
-      toast.error("Error saving article:", error);
+      console.error("Error saving article:", error);
       if (error.response?.data?.errors) {
         setFormErrors(error.response.data.errors);
       } else {
@@ -198,17 +195,17 @@ export default function ArticleForm() {
     }
   };
 
-    const handlePreview = () => {
-      setPreviewContent(form.getValues().content);
-    };
+  const handlePreview = () => {
+    setPreviewContent(form.getValues().content);
+  };
 
-    if (isLoadingArticle) {
-      return (
-        <div className="p-8 flex justify-center items-center h-64">
-          <p>Loading article data...</p>
-        </div>
-      );
-    }
+  if (isLoadingArticle) {
+    return (
+      <div className="p-8 flex justify-center items-center h-64">
+        <p>Loading article data...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="p-8 space-y-6">

@@ -14,28 +14,27 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
-
 import Image from "next/image";
+import { dummyArticles, dummyCategories } from "@/lib/dummyData";
+
 export default function ArticleList() {
   const [articles, setArticles] = useState([]);
   const [search, setSearch] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
   const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const debouncedSearch = useDebounce(search, 400);
 
   const handleCategoryChange = (value) => {
     setSelectedCategory(value);
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
 
-  // Improved search handler
   const handleSearch = (e) => {
     setSearch(e.target.value);
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
 
-  // Fixed category rendering
   const getCategoryValue = (category) => {
     return typeof category === "string" ? category : category.id;
   };
@@ -76,7 +75,7 @@ export default function ArticleList() {
           }
         } catch (articlesError) {
           console.error("Articles fetch failed:", articlesError);
-          articlesData = dummyArticles; // Fallback to dummy data
+          articlesData = dummyArticles; 
         }
 
         let categoriesData = [];
@@ -89,14 +88,14 @@ export default function ArticleList() {
             ? rawCategories
                 .map((item) => {
                   if (typeof item === "string") {
-                    return item.trim(); // Ensure non-empty strings
+                    return item.trim(); 
                   } else {
                     const id = String(item.id || "").trim();
                     const name = String(item.name || "Unnamed Category").trim();
                     return id ? { id, name } : null; // Exclude entries with empty IDs
                   }
                 })
-                .filter(Boolean) 
+                .filter(Boolean)
             : dummyCategories;
           // categoriesData = Array.isArray(rawCategories)
           //   ? rawCategories.map((item) =>
@@ -125,7 +124,7 @@ export default function ArticleList() {
 
   return (
     <div className="min-h-screen">
-      <div className="max-w-7xl mx-auto px-1 py-2">
+      <div className=" mx-auto ">
         <div className="gap-8">
           <section className="relative min-h-[400px] flex items-center justify-center bg-blue-600/90">
             <div className="absolute inset-0 -z-10">
@@ -152,7 +151,7 @@ export default function ArticleList() {
                   onValueChange={handleCategoryChange}
                   value={selectedCategory}
                 >
-                  <SelectTrigger className="bg-white backdrop-blur-sm border-blue-300/20 hover:bg-slate-50 text-white">
+                  <SelectTrigger className="bg-white backdrop-blur-sm border-blue-300/20 hover:bg-blue-50">
                     <SelectValue placeholder="Select category" />
                   </SelectTrigger>
                   <SelectContent className="bg-white/95 backdrop-blur-sm border-gray-200">
@@ -173,13 +172,13 @@ export default function ArticleList() {
                   placeholder="Search articles..."
                   value={search}
                   onChange={handleSearch}
-                  className="bg-white backdrop-blur-sm border-blue-300/20 text-white placeholder-slate-50 focus:ring-2 focus:ring-primary/50"
+                  className="bg-white backdrop-blur-sm border-blue-300/20  placeholder-slate-50 focus:ring-2 focus:ring-primary/50"
                 />
               </div>
             </div>
           </section>
 
-          <div className="flex-1">
+          <div className="flex-1 m-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {articles.map((article) => (
                 <Card
@@ -254,15 +253,3 @@ export default function ArticleList() {
     </div>
   );
 }
-
-const dummyCategories = ["Technology", "Design", "Community", "Sports"];
-const dummyArticles = [
-  {
-    id: "1",
-    title: "Cybersecurity Essentials Every Developer Should Know",
-    content:
-      "Protect your ages and uses with these fundamental cybersecurity practices for developers.",
-    createdAt: "2025-04-13",
-    categories: ["Technology", "Design"],
-  },
-];

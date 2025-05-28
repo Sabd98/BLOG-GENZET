@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Blog Genzet. Merupakan Aplikasi Situs Contoh untuk Menampung Artikel Blog dan Manajemen Data Dengan Ketentuan Role User. Ada 3 Kelompok Role, setiap Kelompok memiliki masing-masing fitur:
 
-## Getting Started
+1. Guest Role. Role Tanpa Login. Fitur yang bisa diakses adalah.
+a. Home User
+b. Register Akun (Pilih Antara Admin/User)
+c. Login Akun (Pilih Antara Admin/User)
+d. Cek Notif Error Jika Input Tidak Sesuai.
 
-First, run the development server:
+2. User Role. Terdiri dari:
+a. Article Page
+b. Profile Page
+c. Article Detail Page dengan Fitur Fetch Related Article
+d. Article Filter Berdasarkan Category
+e. Pencarian Artikel Berdasarkan Judul. Deskripsi. Kategori.
+f. Logout
+3. Admin Role.
+a. Article Table Page (CRUD). Bisa Filter dan Cari
+b. Category Table Page (CRUD), Lebih simple karena hanya mengandalkan modal. Ada fitur Cari Kategori.
+c. Profile
+d. Logout.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. Techstack Wajib Sesuai Permintaan Tugas Dipenuhi:
+a. Next JS (app router, SSR dan CSR)
+b. Styling: Tailwind CSS (+ Shadcn/ui preferred).
+c. Fetching API: axios
+d. Icon: Lucide-react
+e. Form validation: Zod + React Hook Form
+f. Version Control: Gunakan Git dan GitHub (implementasi Git flow).
+g. UI Responsive
+5. Tambahan
+a. Fitur Loading beberapa elemen
+b. Data Dummy Cadangan
+c. Toast succes and error message

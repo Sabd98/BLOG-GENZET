@@ -1,12 +1,26 @@
-'use client';
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { useRouter } from 'next/navigation'
+"use client";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { useRouter } from "next/navigation";
 import {
   Select,
   SelectTrigger,
@@ -14,8 +28,9 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
-import Link from 'next/link'
-import { api } from '@/lib/api'
+import Link from "next/link";
+import { api } from "@/lib/api";
+import { toast } from "sonner";
 
 const registerSchema = z
   .object({
@@ -26,7 +41,7 @@ const registerSchema = z
       .regex(/[A-Z]/, "Must contain at least one uppercase letter")
       .regex(/[0-9]/, "Must contain at least one number"),
     confirmPassword: z.string(),
-    role: z.enum(["Admin", "User"])
+    role: z.enum(["Admin", "User"]),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
@@ -34,7 +49,7 @@ const registerSchema = z
   });
 
 export default function RegisterPage() {
-  const router = useRouter()
+  const router = useRouter();
   const form = useForm({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -47,17 +62,16 @@ export default function RegisterPage() {
 
   const onSubmit = async (values) => {
     try {
-      const { confirmPassword, ...registrationData } = values
-      
-      await api.post('/auth/register', registrationData)
-      
-      router.push('/login')
+      const { confirmPassword, ...registrationData } = values;
+      await api.post("/auth/register", registrationData);
+      toast.success("Account Created");
+      router.push("/login");
     } catch (error) {
-      console.error('Registration error:', error)
-      const errorMessage = error.response?.data?.message || 'Registration failed'
-      // toast.error(errorMessage)
+      const errorMessage =
+        error.response?.data?.message || "Registration failed";
+      toast.error(errorMessage);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">

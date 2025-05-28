@@ -7,13 +7,12 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { CircleUserRound } from "lucide-react";
 
-export default function ProfileUser() {
+export default function ProfileAdmin() {
     const { user, loading } = useAuth(); 
     const router = useRouter();
 
     useEffect(() => {
       if (!loading && !user) {
-        // Redirect only after check
         router.push("/login");
       }
     }, [user, loading, router]);

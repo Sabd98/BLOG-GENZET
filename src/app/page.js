@@ -1,92 +1,49 @@
 // app/page.tsx
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { getCurrentUser } from "@/lib/auth";
-import { redirect } from "next/navigation";
-import { ResponsiveNav } from "@/components/ResponsiveNav";
 
 export default async function Home() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* <ResponsiveNav /> */}
-
-      <main className="max-w-7xl mx-auto px-4 py-16">
-        {/* Hero Section */}
-        <section className="text-center py-20">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            Welcome to The Journal
-          </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Your daily dose of design insights, technology updates, and industry
-            news. Join our community of creators and innovators.
-          </p>
-          <div className="flex justify-center gap-4">
-            <Button asChild size="lg">
-              <Link href="/register">Get Started</Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/login">Sign In</Link>
-            </Button>
-          </div>
-        </section>
-
-        {/* Featured Articles Preview */}
-        <section className="py-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-            Featured Articles
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((item) => (
-              <div
-                key={item}
-                className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow"
-              >
-                <div className="h-48 bg-gray-100 rounded-lg mb-4 animate-pulse" />
-                <h3 className="text-xl font-semibold mb-2">
-                  Loading Article...
-                </h3>
-                <p className="text-gray-600 line-clamp-3 mb-4">
-                  Article content preview loading...
-                </p>
-                <div className="flex gap-2">
-                  <span className="px-3 py-1 bg-gray-100 rounded-full text-sm w-20 animate-pulse" />
-                  <span className="px-3 py-1 bg-gray-100 rounded-full text-sm w-20 animate-pulse" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Features Section */}
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">
-              Why Join The Journal?
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  title: "Expert Insights",
-                  desc: "Learn from industry professionals",
-                },
-                {
-                  title: "Community",
-                  desc: "Connect with like-minded creators",
-                },
-                { title: "Resources", desc: "Access valuable design assets" },
-              ].map((feature) => (
-                <div key={feature.title} className="p-6">
-                  <div className="h-12 w-12 bg-primary/10 rounded-lg mb-4 mx-auto" />
-                  <h3 className="text-xl font-semibold mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600">{feature.desc}</p>
-                </div>
-              ))}
+    <div className="min-h-screen">
+      <div className=" mx-auto ">
+        <div className="gap-8">
+          <section className="relative min-h-[400px] flex items-center justify-center bg-blue-600/90">
+            <div className="absolute inset-0 -z-10">
+              <img
+                src="/3db22360cc9442cb78dec9c16d45821461792f80.jpg"
+                alt="Background"
+                className="w-full h-full object-cover"
+              />
             </div>
-          </div>
-        </section>
-      </main>
+
+            <div className="container max-w-4xl px-4 text-center">
+              <span className="text-sm font-medium text-gray-300 mb-2 block">
+                Blog Genzet
+              </span>
+              <h1 className="text-4xl font-bold text-white mb-4">
+                The Journal : Design Resources, Interviews, and Industry News
+              </h1>
+              <p className="text-lg text-white mb-8">
+                Your daily dose of design insights!
+              </p>
+
+              <div className="flex justify-center gap-4">
+                <Button asChild size="lg" className="hover:bg-blue-400">
+                  <Link href="/register">Get Started</Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="hover:bg-slate-300"
+                >
+                  <Link href="/login">Sign In</Link>
+                </Button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
     </div>
   );
 }

@@ -3,7 +3,7 @@
     "env": {
       "BUN_INSTALL": "1"
     },
-    "installCommand": "curl -fsSL https://bun.sh/install | bash && . ~/.bashrc && bun install",
+    "installCommand": "curl -fsSL https://bun.sh/install | bash && export PATH=\"$HOME/.bun/bin:$PATH\" && bun install",
     "buildCommand": "bun run build"
   }
 }

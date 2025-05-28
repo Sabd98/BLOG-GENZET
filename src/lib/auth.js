@@ -4,8 +4,6 @@ import jwt from 'jsonwebtoken'
 import { cookies } from 'next/headers'
 import { api } from './api';
 
-
-
 export async function verifyToken(token) {
   if (!token) return { user: null, error: 'No token provided' }
 
@@ -17,11 +15,6 @@ export async function verifyToken(token) {
   }
 }
 
-// export async function getCurrentUser() {
-//   const token = cookies().get('token')?.value
-//   const { user } = await verifyToken(token)
-//   return user
-// }
 
 export async function getServerAuth() {
   const cookieStore = await cookies();

@@ -19,11 +19,10 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Loader2 } from "lucide-react";
 import { api } from "@/lib/api";
-import { setClientAuthCookies } from "@/lib/auth";
+import { toast } from "sonner";
 
 const loginSchema = z.object({
   username: z.string().min(6, "Userame must be at least u characters"),
@@ -31,7 +30,6 @@ const loginSchema = z.object({
 });
 
 export default function LoginPage() {
-  const router = useRouter();
   const form = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -52,11 +50,12 @@ export default function LoginPage() {
         document.cookie = `token=${response.data.token}; path=/; max-age=3600`;
         document.cookie = `role=${response.data.role}; path=/; max-age=3600`;
       }
+      toast.success("Login success");
 
       window.location.href = "/articles";
     } catch (error) {
-      console.error("Login error:", error);
-      const errorMessage = error.response?.data?.message || "Login failed";
+      toast.error(error.response?.data?.message || "Login failed");
+
     }
   };
 

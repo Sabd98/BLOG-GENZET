@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ResponsiveNav } from "@/components/ResponsiveNav";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,7 @@ export default function RootLayout({ children }) {
         <ResponsiveNav user={role} />
 
         {children}
+        <Toaster />
       </body>
     </html>
   );
